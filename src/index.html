@@ -76,16 +76,13 @@
 			}
 		});
 		
-		var game = null;
 		var bootgame = function() {
-			game = new supaplex();
-			
-			game.start({
+			supaplex.start({
 				level : 3
 			});
 		}
-
-		Ext.onReady(bootgame);
+		
+		Ext.onReady(bootgame, this);
 	</script>
  </head>
  <body>

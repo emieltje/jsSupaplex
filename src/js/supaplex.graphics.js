@@ -7,6 +7,10 @@
             this.context = this.frame.dom.getContext('2d');
 
             supaplex.graphics.superclass.constructor.call(this, config);
-        }
+        },
+		
+		getContext : function() {
+			return this.context;
+		}
     });
 })();
