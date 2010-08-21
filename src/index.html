@@ -8,6 +8,7 @@
 	
 	<!-- core files -->
   <script type="text/javascript" src="js/supaplex.core.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/supaplex.math.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/supaplex.level.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/supaplex.graphics.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/supaplex.keyboard.js" charset="utf-8"></script>	
@@ -20,13 +21,13 @@
 	<script type="text/javascript" charset="utf-8">
 		Ext.onReady(function() {
 			supaplex.start({
-				level : 1
+				level : 36
 			});
 		}, this);
 	</script>
  </head>
  <body>
-	<canvas id='supaplexframe' class='supaplexFrame' width=600 height=380 style='background-color: gray;'> 
+	<canvas id='supaplexframe' class='supaplexFrame' width=400 height=400 style='background-color: black;'> 
 		<p>I'm sorry, you don't have canvas support in your browser</p>
 	</canvas>
 	<div id='debug'>
