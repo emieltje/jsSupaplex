@@ -9,8 +9,7 @@
 		},
 		
 		redraw : function(x, y) {
-		
-				this.superclass().redraw(this.itemid, x, y);
+			this.superclass().redraw(this.itemid, x, y);
 		}
 	});
 })();

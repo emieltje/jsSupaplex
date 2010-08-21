@@ -2,58 +2,13 @@
 <html>
  <head>
   <title>Supaplex</title>
-	<style>
-		@media screen {
-			@font-face {
-			  font-family: 'Droid Sans Mono';
-			  font-style: normal;
-			  font-weight: normal;
-			  src: local('Droid Sans Mono'), url('libs/droidsansmono.ttf') format('truetype');
-			}
-		}
-		
-		@media screen {
-			@font-face {
-			  font-family: 'Droid Sans';
-			  font-style: normal;
-			  font-weight: normal;
-			  src: local('Droid Sans'), url('libs/droidsans.ttf') format('truetype');
-			}
-		}
-	</style>
-	<style type="text/css" media="screen">	
-		body {
-			font-family: 'Droid Sans';
-			font-weight: normal;
-			font-size: 10pt;
-			
-			color: #ddd;
-
-			text-shadow: rgba(0, 0, 0, 1) 0 2px 5px;  
-			padding: 20;
-			background-image: url(gfx/bg.jpg);
-		}
-		  
-		.supaplexFrame {
-			float : left;
-			width : 600px;
-			height: 480px;
-			background-color: #000;
-			
-		}
-		  
-		#debug {
-			width : auto;
-			height : 480px;
-			overflow : auto;
-		}
-  	</style>
+	
 	<!-- load libs -->
-    <script src="libs/ext-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="libs/ext-core.js" type="text/javascript" charset="utf-8"></script>
 	
 	<!-- core files -->
-  	<script type="text/javascript" src="js/supaplex.core.js" charset="utf-8"></script>
-  	<script type="text/javascript" src="js/supaplex.level.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/supaplex.core.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/supaplex.level.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/supaplex.graphics.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/supaplex.keyboard.js" charset="utf-8"></script>	
 	<script type="text/javascript" src="js/supaplex.object.js" charset="utf-8"></script>
@@ -62,41 +17,18 @@
 	<script type="text/javascript" src="js/objects/murphy.js" charset="utf-8"></script>	
 	
 	<script type="text/javascript" charset="utf-8">
-		/**
-		 * For show..
-		 */
-		Ext.override(Ext.data.Connection, {
-			listeners : {
-				beforerequest : function() {
-					Ext.get('loading').show();
-				},
-				requestcomplete : function() {
-					Ext.get('loading').hide();
-				}
-			}
-		});
-		
-		var bootgame = function() {
+		Ext.onReady(function() {
 			supaplex.start({
 				level : 3
 			});
-		}
-		
-		Ext.onReady(bootgame, this);
+		}, this);
 	</script>
  </head>
  <body>
-	<div id='loading' style='background-color: red; display: none; position: absolute; right: 5px; top: 5px; padding: 2px 20px 2px 20px; '> 
-	 Downloading data...
-	</div>
-	
-	<div id='framcounter' style='float: right;'></div>
- 	<br />
-	<canvas id='supaplexframe' class='supaplexFrame' width=600 height=480> 
+	<canvas id='supaplexframe' class='supaplexFrame' width=600 height=380 style='background-color: gray;'> 
 		<p>I'm sorry, you don't have canvas support in your browser</p>
 	</canvas>
 	<div id='debug'>
-		<div style='font-size: 1p6t'>Javascript <b>Supaplex</b></div>
 	</div>
  </body>
 </html>

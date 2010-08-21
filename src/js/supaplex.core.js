@@ -4,11 +4,21 @@ const FPS = 20;
 Ext.namespace('supaplex');
 
 var supaplex = {
-	bootstrap : function(config) {
+	gamefield : [],
+	position: {
+			x : 0,
+			y : 0
+	},
+	
+	init : function(config) {
 		// Setup graphics device
 		this.gfx = new supaplex.graphics();
-		
+		// Setup the keyboard
 		this.initKeyboard();
+		
+		this.initMap(config);
+		
+		// @todo test object
 		this.initMurphy();
 	},
 	
@@ -29,9 +39,13 @@ var supaplex = {
 		
 	},
 	
+	initMap : function(config) {
+		this.level = new supaplex.level(config.level || 45);
+		this.gamefield = this.level[0];
+	},
+	
 	start : function(config) {
-		this.bootstrap();
-		this.level = new supaplex.level(config.level || 1);
+		this.init(config);
 		
 		// Init gameloop
 		Ext.TaskMgr.start({
@@ -40,27 +54,21 @@ var supaplex = {
 			scope: this
 		});
 	},
-	
-	framecounter : function() {
-		if (!this.framecount) 
-			this.framecount = 1;
-		
-		Ext.get('framcounter').dom.innerHTML = 'Frame: ' + this.framecount ;
-		this.framecount++;
-	},
-	
+
 	gameloop : function() {
-		this.framecounter();
-	
-		var px = py = 10;
+		var px = this.position.x
+		 	py = this.position.y;
+
+		this.gfx.getContext().clearRect(0, 0, this.gfx.getFrame().width, this.gfx.getFrame().height);	
 		
-		var context = this.gfx.context;
-		context.clearRect(0, 0, this.gfx.frame.dom.width, this.gfx.frame.dom.height);	
-		
+		// Draw the map to the canvas
+		this.gfx.getContext().drawImage(this.gfx.frame.map, px, py);
+
+		// Draw murphy
 		this.murphy.redraw((px * TILESIZE), (py * TILESIZE));
 	},
 	
 	debug : function(t) {
-		Ext.get('debug').dom.innerHTML = t + '<br />' + Ext.get('debug').dom.innerHTML;
+		console.info(t);
 	}
 };
