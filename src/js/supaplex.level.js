@@ -71,30 +71,22 @@
 
         // Get the level binary
         var data = getLevelData(DATAFILE);
-
-		
-		
-		
         // Slice-out one level
         var levelData = data.slice(((1536 * level) - 1536), (1536 * level));
-
         // Get all the tiles and parse it
         returnData.push({
             tiles: parseLevel(getBytes(levelData, 1440))
         });
-
         // Move pointer four bytes
         _pointer += 4;
-
         // Is gravitation enabled?
         var gravitation = getBytes(levelData, 1);
-
         // Move pointer 1 byte
         _pointer += 1;
-
         // Get the level title
         returnData.push({
-            title: getBytes(levelData, 23)
+            title: getBytes(levelData, 23),
+			gravitation : gravitation
         });
         // Return the level data
         return returnData;

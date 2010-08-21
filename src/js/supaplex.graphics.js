@@ -2,7 +2,6 @@
     Ext.namespace('supaplex.graphics');
 
     supaplex.graphics = Ext.extend(Ext.util.Observable, {
-	
 		context : {
 			display : null,
 			map : null

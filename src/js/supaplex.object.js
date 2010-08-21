@@ -11,7 +11,7 @@
 			var im = new Image();
 			im.src = 'gfx/supaplex.gif';
 			
-			supaplex.gfx.getMapContext().drawImage(im, (itemid*16), 0, 16, 16, x, y, TILESIZE, TILESIZE);				
+			supaplex.gfx.getContext().drawImage(im, (itemid*16), 0, 16, 16, x, y, TILESIZE, TILESIZE);				
 		}
 	});
 })();

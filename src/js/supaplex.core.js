@@ -1,4 +1,4 @@
-const TILESIZE = 32;
+const TILESIZE = 20;
 const FPS = 20;
 
 Ext.namespace('supaplex');
@@ -16,7 +16,8 @@ var supaplex = {
 		// Setup the keyboard
 		this.initKeyboard();
 		
-		this.initMap(config);
+		this.map = new supaplex.map(config.level || 1);
+		this.map.redrawMap();
 		
 		// @todo test object
 		this.initMurphy();
@@ -37,11 +38,6 @@ var supaplex = {
 			this.debug('keyu: ' + event.getCharCode());
 		}, this);
 		
-	},
-	
-	initMap : function(config) {
-		this.level = new supaplex.level(config.level || 45);
-		this.gamefield = this.level[0];
 	},
 	
 	start : function(config) {
@@ -66,9 +62,5 @@ var supaplex = {
 
 		// Draw murphy
 		this.murphy.redraw((px * TILESIZE), (py * TILESIZE));
-	},
-	
-	debug : function(t) {
-		console.info(t);
 	}
 };
