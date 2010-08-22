@@ -2,7 +2,19 @@
 	Ext.namespace('supaplex.object');
 	
 	supaplex.object = Ext.extend(Ext.util.Observable, {
-	
+		position : { 
+			x : 0,
+			y : 0,
+			map : {
+				x : 0,
+				y : 0
+			},
+			offset : {
+				x : 0,
+				y : 0
+			}
+		},
+		
 		constructor : function(config) {
 			supaplex.object.superclass.constructor.call(this, config);
 		},

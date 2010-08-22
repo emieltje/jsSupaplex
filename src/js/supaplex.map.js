@@ -18,7 +18,8 @@
 		init : function(level) {
 			this.level = new supaplex.level(level);
 			this.map = this.level[0];
-		
+			supaplex.setLevelTitle(this.level[1].title);
+			
 			// Focus on Murphy, and save the coordinates
 			var m = supaplex.math.getXY(supaplex.math.getSingleIndex(EL_MURPHY));
 			this.moveto(m.x, m.y);
@@ -107,7 +108,7 @@
 		move : function(x, y) {
 			this.map.tiles[supaplex.math.getXYIndex(supaplex.murphy.position.map.x, supaplex.murphy.position.map.y)] = EL_BLANK;
 			
-			if (supaplex.murphy.position.offset.y != 0) {
+			if (Math.round(supaplex.murphy.position.offset.y) != 0) {
 				supaplex.murphy.position.offset.y += y;
 			} else 
 			{
@@ -122,12 +123,11 @@
 				}
 			}
 			
-			if (supaplex.murphy.position.offset.x != 0) {
+			if (Math.round(supaplex.murphy.position.offset.x) != 0) {
 				supaplex.murphy.position.offset.x += x;
 			} else 
 			{
 				this.position.x += -x;
-			
 				if(this.position.x > 0) {
 					this.position.x = 0;
 					supaplex.murphy.position.offset.x += x;

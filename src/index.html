@@ -3,8 +3,12 @@
  <head>
   <title>Supaplex</title>
 	
+	<link rel="stylesheet" type="text/css" href="http://extjs-public.googlecode.com/svn/tags/extjs-3.2.1/release/resources/css/ext-all.css" /> 
+	<link href="http://extjs-public.googlecode.com/svn/tags/extjs-3.2.1/release/resources/css/xtheme-gray.css" rel="stylesheet" type="text/css">
+	
 	<!-- load libs -->
-  <script src="libs/ext-core.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://extjs-public.googlecode.com/svn/tags/extjs-3.2.1//release/adapter/ext/ext-base.js"></script>
+	<script type="text/javascript" src="http://extjs-public.googlecode.com/svn/tags/extjs-3.2.1//release/ext-all.js"></script>
 	
 	<!-- core files -->
   <script type="text/javascript" src="js/supaplex.core.js" charset="utf-8"></script>
@@ -21,16 +25,22 @@
 	<script type="text/javascript" charset="utf-8">
 		Ext.onReady(function() {
 			supaplex.start({
-				level : 36
+				level : 111,
+				dimension : {
+					width: 100,
+					height: 100
+				}
 			});
 		}, this);
 	</script>
+	
+	<style type="text/css"> 
+	    #frame {
+	        margin:10px;
+	    }
+</style>
  </head>
  <body>
-	<canvas id='supaplexframe' class='supaplexFrame' width=400 height=400 style='background-color: black;'> 
-		<p>I'm sorry, you don't have canvas support in your browser</p>
-	</canvas>
-	<div id='debug'>
-	</div>
+	<div id='frame'></div>
  </body>
 </html>

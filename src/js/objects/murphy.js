@@ -5,18 +5,10 @@
 		itemid : 3,
 		
 		constructor : function(config) {
-			this.position = { 
+			Ext.apply(this.position, { 
 				x : (supaplex.gfx.getFrame().width / TILESIZE) / 2,
-				y : (supaplex.gfx.getFrame().height / TILESIZE) / 2,
-				map : {
-					x : 0,
-					y : 0
-				},
-				offset : {
-					x : 0,
-					y : 0
-				}
-			};
+				y : (supaplex.gfx.getFrame().height / TILESIZE) / 2
+			});
 			
 			this.superclass().constructor.call(this, config);
 		}
