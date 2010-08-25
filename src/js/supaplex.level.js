@@ -5,12 +5,12 @@
     const DATAFILE = 'levels.dat';
 
     /**
-	 * Class for fetching, reading, parsing supaplex levels.
-	 */
+     * Class for fetching, reading, parsing supaplex levels.
+     */
     supaplex.level = function(level) {
         /**
-	     * Get the level data
-	     */
+         * Get the level data
+         */
         var getLevelData = function(url) {
             // Cache the level data!
             if (levelCache != null) {
@@ -32,13 +32,13 @@
                 ff[z] = scc(t.charCodeAt(z) & 255);
             }
 
-			var b = levelCache = ff.join("");
-			
-			return b;
+            var b = levelCache = ff.join("");
+            
+            return b;
         }
         /**
-	     * Get bytes from starting from @var pointer
-	     */
+         * Get bytes from starting from @var pointer
+         */
         var getBytes = function(data, bytes) {
             var ff = [];
             ff[0] = data;
@@ -49,8 +49,8 @@
             return byteData;
         }
         /**
-	     * Parses the level, and returns a array of tile type numbers
-	     */
+         * Parses the level, and returns a array of tile type numbers
+         */
         var parseLevel = function(tiles) {
             var levelArray = [];
             var pos = 0;
@@ -86,7 +86,7 @@
         // Get the level title
         returnData.push({
             title: getBytes(levelData, 23),
-			gravitation : gravitation
+            gravitation : gravitation
         });
         // Return the level data
         return returnData;
