@@ -8,10 +8,6 @@
 			map : {
 				x : 0,
 				y : 0
-			},
-			offset : {
-				x : 0,
-				y : 0
 			}
 		},
 		
@@ -28,6 +24,13 @@
 		
 		getNearElement : function(x, y) {
 			return supaplex.map.map.tiles[supaplex.math.getXYIndex((this.position.map.x + x), (this.position.map.y + y))];
+		},
+		
+		setMapXY : function(x, y) {
+			this.position.map = {
+				x: x,
+				y: y
+			};
 		}
 	});
 })();

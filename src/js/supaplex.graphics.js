@@ -57,7 +57,8 @@
 				id : 'gamepanel',
 				renderTo: 'frame',
 				width: width,
-				height : height+27,
+				height : height+(2*27),
+				tbar : [{text: 'test'}],
 				html: "<canvas id='supaplexframe' class='supaplexFrame' height="+height+" width="+width+" style='background-color: black;'><p>I'm sorry, you don't have canvas support in your browser</p></canvas>"
 			});
 

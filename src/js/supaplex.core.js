@@ -1,4 +1,4 @@
-const TILESIZE = 20;
+const TILESIZE = 25;
 const FPS = 24;
 
 const EL_BLANK = 0;
@@ -8,7 +8,7 @@ const EL_BOMB = 1;
 const EL_INFOTRON = 4;
 const EL_END = 7;
 
-Ext.namespace('supaplex', 'supaplex.math');
+Ext.namespace('supaplex', 'supaplex.math', 'supaplex.objectmanager');
 
 var supaplex = {
 	pauze : false,
@@ -25,8 +25,11 @@ var supaplex = {
 		this.map = new supaplex.map();
 		this.murphy = new supaplex.object.murphy();
 
-		// init the map at the end
+
 		this.map.init(this.supaplexlevel);
+		
+		this.objectmanager = new supaplex.objectmanager();
+		this.objectmanager.init();
 	},
 	
 	setLevelTitle : function(title) {
@@ -127,7 +130,8 @@ var supaplex = {
 		this.gfx.getContext().drawImage(this.gfx.frame.map, (this.map.position.x*TILESIZE), (this.map.position.y*TILESIZE));
 		
 		// Draw murphy
-
 		this.murphy.redraw(((this.murphy.position.x + this.murphy.position.offset.x) * TILESIZE), ((this.murphy.position.y + this.murphy.position.offset.y) * TILESIZE));
+		
+		this.objectmanager.redraw();
 	}
 };
