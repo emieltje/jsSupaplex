@@ -1,0 +1,126 @@
+<html>
+ <head>
+ 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+ 	<title>test</title>
+ 	
+ </head>
+<body onload='runtest();'>
+		<canvas height=500 width=500 style='background-color: black;' id='testcanvas'></canvas>
+		
+		<script type="text/javascript" charset="utf-8">
+			function runtest() {
+				var canvas  = document.getElementById('testcanvas');
+				var ctx = canvas.getContext('2d');
+				
+				var x = 0, y = 0, tilesize = 50, lastkey = '', step = 2;
+				var murphyOnPosition = true;
+				
+				var left = right = up = down = false;
+					
+				var getKeyCode = function(event) {
+					var keyCode = event.which;
+					if (keyCode == undefined) {
+							keyCode = event.keyCode;
+					}
+					
+					return keyCode;
+				}
+				
+				// Event listeners
+				document.onkeydown = function(event){
+					if (murphyOnPosition) {					
+						switch(getKeyCode(event)) {
+							case 39:	right = true; lastkey = 'right';break;
+							case 37:	left = true; lastkey = 'left';break;
+							case 40:	down = true; lastkey = 'down'; break;
+							case 38:	up = true; lastkey = 'up';break;
+						}
+					}
+				}
+
+				document.onkeyup = function(event){
+					switch(getKeyCode(event)) {
+						case 39:	right = false;break;
+						case 37:	left = false;break;
+						case 40:	down = false;break;
+						case 38:	up = false;break;
+					}
+				}
+
+					
+				setInterval(function() {
+					ctx.fillStyle = "rgba(0, 0, 0, 0.1)";  
+				  ctx.fillRect (0, 0, canvas.width, canvas.height);
+					
+					if (murphyOnPosition) {					
+						if (left) 	x -= step;
+						else if (right) 	x += step;
+						else if (up) 		y -= step;
+						else if (down) 	y += step;
+						
+						if (left || right || up || down)
+							murphyOnPosition = false;
+					}	
+
+					if (!left && !right && !up && !down || murphyOnPosition == false) {
+						switch(lastkey) {
+							case 'left':
+								if (x % tilesize != 0) {
+									x -= step; 
+								}else {
+									murphyOnPosition = true;
+								}
+								break;
+							case 'right':
+								if (x % tilesize != 0) {
+									x += step; 
+								}else {
+									murphyOnPosition = true;
+								}
+								break;
+							case 'down':
+								if (y % tilesize != 0) {
+									y += step; 
+								}else {
+									murphyOnPosition = true;
+								}
+								break;
+							case 'up':
+								if (y % tilesize != 0) {
+									y -= step; 
+								}else {
+									murphyOnPosition = true;
+								}
+								break;
+						}
+					}
+					
+					ctx.fillStyle = "rgb(255,0,0)";  
+					ctx.fillRect (x, y, tilesize, tilesize);
+					
+					
+					for(gx = 0; gx != Math.round(canvas.width / tilesize); gx++) {
+						ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "green";
+            ctx.moveTo(tilesize*gx, 0);
+            ctx.lineTo(tilesize*gx, canvas.width);
+            ctx.stroke();
+					}
+					
+					for(gy = 0; gy != Math.round(canvas.height / tilesize); gy++) {
+						ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "green";
+            ctx.moveTo(0, tilesize*gy);
+            ctx.lineTo(canvas.height, tilesize*gy);
+            ctx.stroke();
+					}
+					
+					
+					
+				},10); 
+			}
+		</script>
+</body>
+</html>
