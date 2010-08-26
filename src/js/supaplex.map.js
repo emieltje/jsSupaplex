@@ -42,7 +42,7 @@
         redrawMap : function() {
             var im = new Image()
                 x = y = i = 0;
-            im.src = 'gfx/supaplex.gif';                
+            im.src = 'gfx/supaplex.png';                
             
             for(i=0; i < 1440; i++) {
                 if (x == 60) {
@@ -106,8 +106,9 @@
         },
         
         move : function(x, y) {
-            this.map.tiles[supaplex.math.getXYIndex(supaplex.murphy.position.map.x, supaplex.murphy.position.map.y)] = EL_BLANK;
-            
+			var index = supaplex.math.getXYIndex(supaplex.murphy.position.map.x, supaplex.murphy.position.map.y);
+            this.map.tiles[index] = EL_BLANK;
+					
             if (Math.round(supaplex.murphy.position.offset.y) != 0) {
                 supaplex.murphy.position.offset.y += y;
             } else 
@@ -139,7 +140,9 @@
             supaplex.murphy.position.map.x += x;
             supaplex.murphy.position.map.y += y;
             
+			supaplex.objectmanager.removeObject(supaplex.math.getXYIndex(supaplex.murphy.position.map.x, supaplex.murphy.position.map.y));
             this.map.tiles[supaplex.math.getXYIndex(supaplex.murphy.position.map.x, supaplex.murphy.position.map.y)] = EL_MURPHY;
+			
         }
     });
 })();

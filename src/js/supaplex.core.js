@@ -1,5 +1,5 @@
 const TILESIZE = 25;
-const FPS = 24;
+const FPS = 100;
 
 const EL_BLANK = 0;
 const EL_MURPHY = 3;
@@ -23,7 +23,7 @@ var supaplex = {
         // Setup the keyboard
         this.initKeyboard();
         this.map = new supaplex.map();
-        this.murphy = new supaplex.object.murphy();
+        this.murphy = new supaplex_object_murphy();
 
 
         this.map.init(this.supaplexlevel);
@@ -84,11 +84,20 @@ var supaplex = {
             }
             
             var element = this.murphy.getNearElement(x, y);
+			var index = supaplex.math.getXYIndex(this.murphy.position.map.x, this.murphy.position.map.y);
             switch(element) {
+				case EL_BASE:
+					// this.objectmanager.removeObject(index);
+					// console.info(index);
+                    this.map.move(x, y); 					
+					break;
                 case EL_END:
                     Ext.MessageBox.alert('Complete', 'Level complete!'); 
                     break;
+				case EL_BOMB:
+					break;
                 default :
+
                     if (element == 11 && x == -1) { // Tube right to left
                         x = -2;
                         this.map.move(x, y); 
@@ -123,15 +132,27 @@ var supaplex = {
     },
     
     gameloop : function() {
+	
+		var context = this.gfx.getContext();
+		
         // Clear the screen
-        this.gfx.getContext().clearRect(0, 0, this.gfx.getFrame().width, this.gfx.getFrame().height);   
-        
+        //this.gfx.getContext().clearRect(0, 0, this.gfx.getFrame().width, this.gfx.getFrame().height);   
+    
+		// Testing with gradiant background
+		var my_gradient = context.createLinearGradient(0, 0, 0, this.gfx.getFrame().height);
+		my_gradient.addColorStop(0, "black");
+		my_gradient.addColorStop(1, "blue");
+
+		context.fillStyle = my_gradient;
+		context.fillRect(0, 0, this.gfx.getFrame().width, this.gfx.getFrame().height);
+
+    
         // Draw the map to the canvas
         this.gfx.getContext().drawImage(this.gfx.frame.map, (this.map.position.x*TILESIZE), (this.map.position.y*TILESIZE));
+
+        this.objectmanager.redraw();
         
         // Draw murphy
         this.murphy.redraw(((this.murphy.position.x + this.murphy.position.offset.x) * TILESIZE), ((this.murphy.position.y + this.murphy.position.offset.y) * TILESIZE));
-        
-        this.objectmanager.redraw();
     }
 };
